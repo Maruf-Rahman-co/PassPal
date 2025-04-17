@@ -1,0 +1,184 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 33% 98%;
+    --foreground: 262 47% 30%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 262 47% 30%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 262 47% 30%;
+
+    --primary: 258 78% 74%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 341 100% 95%;
+    --secondary-foreground: 262 47% 30%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 262 30% 50%;
+
+    --accent: 203 94% 94%;
+    --accent-foreground: 262 47% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 258 30% 90%;
+    --input: 258 30% 90%;
+    --ring: 258 78% 74%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 262 40% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 262 30% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 262 40% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 258 78% 74%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 341 60% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 262 30% 15%;
+    --muted-foreground: 262 10% 70%;
+
+    --accent: 203 40% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 262 30% 20%;
+    --input: 262 30% 20%;
+    --ring: 258 78% 74%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  /* Better heading contrast */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground font-bold;
+  }
+
+  /* Focus indicators for accessibility */
+  button:focus-visible, a:focus-visible, input:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism styles */
+  .glass {
+    @apply bg-white/60 backdrop-blur-md border border-white/50 shadow-lg;
+  }
+  
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-md border border-white/10 shadow-lg;
+  }
+  
+  /* Gradient backgrounds */
+  .bg-gradient-purple {
+    @apply bg-gradient-to-br from-passpal-purple to-passpal-pink;
+  }
+  
+  .bg-gradient-peach {
+    @apply bg-gradient-to-br from-passpal-peach to-passpal-orange;
+  }
+  
+  .bg-gradient-cool {
+    @apply bg-gradient-to-br from-passpal-blue to-passpal-purple;
+  }
+  
+  /* Password strength indicators - improved contrast */
+  .strength-too-weak {
+    @apply bg-strength-too-weak text-white;
+  }
+  
+  .strength-weak {
+    @apply bg-strength-weak text-black;
+  }
+  
+  .strength-mid {
+    @apply bg-strength-mid text-black;
+  }
+  
+  .strength-strong {
+    @apply bg-strength-strong text-white;
+  }
+  
+  .strength-unbreakable {
+    @apply bg-strength-unbreakable text-white;
+  }
+
+  /* Custom animations */
+  .hover-bounce {
+    @apply transition-transform hover:scale-105 active:scale-95;
+  }
+
+  /* Improved responsive classes */
+  .responsive-container {
+    @apply w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .glass, .glass-dark {
+    @apply px-3 py-4 rounded-lg;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+}
