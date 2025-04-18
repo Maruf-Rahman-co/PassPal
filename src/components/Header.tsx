@@ -1,4 +1,4 @@
-import { Moon, Sun, Lock } from "lucide-react";
+import { Moon, Sun, Lock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -43,6 +43,15 @@ const Header = () => {
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
+
+          <nav className="flex items-center gap-4">
+            <Link to="/about">
+              <Button variant="ghost" className="flex items-center gap-2">
+                <User className="w-4 h-4" />
+                About
+              </Button>
+            </Link>
+          </nav>
         </div>
       </div>
     </header>

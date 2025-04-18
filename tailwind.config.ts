@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,6 +61,7 @@ export default {
 					yellow: '#FEF7CD',
 					orange: '#FEC6A1',
 					pink: '#FFDEE2',
+					red: '#FF6B6B',
 				},
 				strength: {
 					'too-weak': '#FF4545', // Darker red for better contrast

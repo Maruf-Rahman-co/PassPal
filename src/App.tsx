@@ -14,7 +14,12 @@ import VigenereCipherPage from "@/pages/VigenereCipherPage";
 import PassphraseGeneratorPage from "@/pages/PassphraseGeneratorPage";
 import PwnedPasswordCheckerPage from "@/pages/PwnedPasswordCheckerPage";
 import RedirectCheckerPage from "@/pages/RedirectCheckerPage";
+import ZeroWidthEncoderPage from "@/pages/ZeroWidthEncoderPage";
+import PayloadGeneratorPage from "@/pages/PayloadGeneratorPage";
 import Header from "@/components/Header";
+import ExifToolPage from "@/pages/ExifToolPage";
+import ConfusableDetectorPage from "@/pages/ConfusableDetectorPage";
+import AboutPage from "@/pages/AboutPage";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +44,11 @@ const App = () => (
               <Route path="/passphrase" element={<PassphraseGeneratorPage />} />
               <Route path="/pwned-checker" element={<PwnedPasswordCheckerPage />} />
               <Route path="/redirect-checker" element={<RedirectCheckerPage />} />
+              <Route path="/zero-width-encoder" element={<ZeroWidthEncoderPage />} />
+              <Route path="/payload-generator" element={<PayloadGeneratorPage />} />
+              <Route path="/exif-tool" element={<ExifToolPage />} />
+              <Route path="/confusable-detector" element={<ConfusableDetectorPage />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
