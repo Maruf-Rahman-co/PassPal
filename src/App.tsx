@@ -20,6 +20,7 @@ import Header from "@/components/Header";
 import ExifToolPage from "@/pages/ExifToolPage";
 import ConfusableDetectorPage from "@/pages/ConfusableDetectorPage";
 import AboutPage from "@/pages/AboutPage";
+import NotFoundPage from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +53,7 @@ const App = () => (
               <Route path="/exif-tool" element={<ExifToolPage />} />
               <Route path="/confusable-detector" element={<ConfusableDetectorPage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
         </div>
