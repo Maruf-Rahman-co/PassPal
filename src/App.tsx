@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "@/pages/Dashboard";
-import PasswordGeneratorPage from "@/pages/PasswordGenerator";
+import PasswordGenerator from "@/pages/PasswordGenerator";
 import EncoderPage from "@/pages/EncoderPage";
 import SteganographyPage from "@/pages/SteganographyPage";
 import PasswordTesterPage from "@/pages/PasswordTesterPage";
@@ -20,7 +20,7 @@ import Header from "@/components/Header";
 import ExifToolPage from "@/pages/ExifToolPage";
 import ConfusableDetectorPage from "@/pages/ConfusableDetectorPage";
 import AboutPage from "@/pages/AboutPage";
-import NotFoundPage from "@/pages/NotFound";
+import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -38,7 +38,7 @@ const App = () => (
           <main className="container mx-auto px-4 py-8">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/password-generator" element={<PasswordGeneratorPage />} />
+              <Route path="/password-generator" element={<PasswordGenerator />} />
               <Route path="/password-tester" element={<PasswordTesterPage />} />
               <Route path="/encoder" element={<EncoderPage />} />
               <Route path="/steganography" element={<SteganographyPage />} />
@@ -53,7 +53,7 @@ const App = () => (
               <Route path="/exif-tool" element={<ExifToolPage />} />
               <Route path="/confusable-detector" element={<ConfusableDetectorPage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="*" element={<NotFoundPage />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </div>
