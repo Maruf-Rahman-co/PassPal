@@ -1,73 +1,67 @@
-# Welcome to your Lovable project
+# PassPal - Security Tools Made Fun 🛡️
 
-## Project info
+PassPal is a collection of security tools designed to make security testing and development more accessible and enjoyable. Built with a focus on user-friendliness and transparency, PassPal provides a suite of tools for security enthusiasts and developers.
 
-**URL**: https://lovable.dev/projects/d299ba1d-f153-4015-a0f4-11b11e9d1036
+## About Me 👋
 
-## How can I edit this code?
+I'm Maruf Rahman Tangin, a security enthusiast and developer based in the UAE. As a CS graduate with a passion for both cracking and securing systems, I've created PassPal to make security tools accessible and fun for everyone. When I'm not busy protecting the digital world, you might find me pulling off harmless online pranks (all in good fun, of course!).
 
-There are several ways of editing your application.
+### Fun Facts About Me
+- I can debug code while sleep-deprived (not recommended)
+- I find more bugs in code than in my garden
+- I believe in security through transparency
+- I love making complex security concepts simple
 
-**Use Lovable**
+## Features 🚀
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d299ba1d-f153-4015-a0f4-11b11e9d1036) and start prompting.
+### My Security First Approach
+All tools are built with security in mind, ensuring your data stays safe and private.
 
-Changes made via Lovable will be committed automatically to this repo.
+### My User-Friendly Philosophy
+Complex security tools made simple and accessible for everyone.
 
-**Use your preferred IDE**
+### My Open Source Commitment
+Built with transparency in mind, making my code open for everyone to see and contribute.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Tools Included 🛠️
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Password Generator
+- Password Strength Tester
+- Encoder/Decoder
+- Steganography Tools
+- Morse Code Converter
+- Caesar Cipher
+- Vigenère Cipher
+- Passphrase Generator
+- Pwned Password Checker
+- Redirect Checker
+- Zero Width Encoder
+- Payload Generator
+- EXIF Tool
+- Confusable Detector
 
-Follow these steps:
+## Tech Stack 💻
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
 - React
-- shadcn-ui
+- TypeScript
 - Tailwind CSS
+- Vite
+- Framer Motion
+- Lucide Icons
 
-## How can I deploy this project?
+## My Mission 🎯
 
-Simply open [Lovable](https://lovable.dev/projects/d299ba1d-f153-4015-a0f4-11b11e9d1036) and click on Share -> Publish.
+I aim to make security tools accessible, fun, and easy to use for everyone. Because in a world where security is crucial, it shouldn't be complicated or boring. I believe in empowering users with the knowledge and tools they need to stay safe online.
 
-## Can I connect a custom domain to my Lovable project?
+## Contact Me 📞
 
-Yes, you can!
+Feel free to reach out to me at:
+- Phone: +971 55 213 4063
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## License 📄
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is open source and available under the MIT License.
+
+---
+
+Made with ❤️ by Maruf Rahman Tangin
