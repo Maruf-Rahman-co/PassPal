@@ -13,6 +13,7 @@ import CaesarCipherPage from "@/pages/CaesarCipherPage";
 import VigenereCipherPage from "@/pages/VigenereCipherPage";
 import PassphraseGeneratorPage from "@/pages/PassphraseGeneratorPage";
 import PwnedPasswordCheckerPage from "@/pages/PwnedPasswordCheckerPage";
+import RedirectCheckerPage from "@/pages/RedirectCheckerPage";
 import Header from "@/components/Header";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
               <Route path="/vigenere" element={<VigenereCipherPage />} />
               <Route path="/passphrase" element={<PassphraseGeneratorPage />} />
               <Route path="/pwned-checker" element={<PwnedPasswordCheckerPage />} />
+              <Route path="/redirect-checker" element={<RedirectCheckerPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

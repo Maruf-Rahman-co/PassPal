@@ -7,7 +7,8 @@ import {
   Shield,
   Image,
   Radio,
-  FileText
+  FileText,
+  ExternalLink
 } from "lucide-react";
 
 interface FeatureCard {
@@ -91,6 +92,14 @@ const features: FeatureCard[] = [
     link: "/pwned-checker",
     bgColor: "bg-passpal-pink",
     darkBgColor: "dark:bg-passpal-pink/90"
+  },
+  {
+    title: "Link Redirect Checker",
+    description: "Detect and analyze URL redirect chains for security",
+    icon: <ExternalLink className="w-5 h-5 sm:w-6 sm:h-6 text-white dark:text-black" />,
+    link: "/redirect-checker",
+    bgColor: "bg-passpal-blue",
+    darkBgColor: "dark:bg-passpal-blue/90"
   }
 ];
 
