@@ -87,7 +87,7 @@ const tools: Tool[] = [
     title: "Passphrase Generator",
     description: "Generate memorable and secure passphrases using dictionary words",
     icon: FileText,
-    link: "/passphrase",
+    link: "/passphrase-generator",
     category: "password",
     bgColor: "bg-passpal-green",
     darkBgColor: "dark:bg-passpal-green/90"
@@ -105,7 +105,7 @@ const tools: Tool[] = [
     title: "Pwned Password Checker",
     description: "Check if your password has been exposed in data breaches",
     icon: AlertTriangle,
-    link: "/pwned-checker",
+    link: "/pwned-password-checker",
     category: "password",
     bgColor: "bg-passpal-red",
     darkBgColor: "dark:bg-passpal-red/90"
@@ -123,7 +123,7 @@ const tools: Tool[] = [
     title: "Caesar Cipher",
     description: "Classic shift cipher for text encryption",
     icon: Code2,
-    link: "/caesar",
+    link: "/caesar-cipher",
     category: "encryption",
     bgColor: "bg-passpal-orange",
     darkBgColor: "dark:bg-passpal-orange/90"
@@ -132,7 +132,7 @@ const tools: Tool[] = [
     title: "Vigenère Cipher",
     description: "Advanced polyalphabetic substitution cipher",
     icon: Lock,
-    link: "/vigenere",
+    link: "/vigenere-cipher",
     category: "encryption",
     bgColor: "bg-passpal-pink",
     darkBgColor: "dark:bg-passpal-pink/90"
