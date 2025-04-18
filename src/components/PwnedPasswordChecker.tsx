@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { Shield, AlertTriangle, CheckCircle2, Loader2, Lock, Key, RefreshCw } from "lucide-react";
+import { Shield, AlertTriangle, CheckCircle2, Loader2, Lock, Key, RefreshCw, AlertCircle } from "lucide-react";
 import { checkPassword } from "@/lib/passwordChecker";
 import { toast } from "sonner";
 
@@ -29,10 +29,17 @@ export default function PwnedPasswordChecker() {
     try {
       const checkResult = await checkPassword(password);
       setResult(checkResult);
-      if (checkResult.isPwned) {
+      
+      if (checkResult.error) {
+        toast({
+          title: "Error",
+          description: `Failed to check password: ${checkResult.error}`,
+          variant: "destructive",
+        });
+      } else if (checkResult.isPwned) {
         toast({
           title: "Password Found in Breaches",
-          description: `This password has been found in ${checkResult.count} data breaches!`,
+          description: `This password has been found in ${checkResult.count?.toLocaleString()} data breaches!`,
           variant: "destructive",
         });
       } else {
@@ -43,12 +50,17 @@ export default function PwnedPasswordChecker() {
         });
       }
     } catch (error) {
+      console.error("Password check error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      setResult({
+        isPwned: false,
+        error: errorMessage
+      });
       toast({
         title: "Error",
-        description: "Failed to check password. Please try again.",
+        description: `Failed to check password: ${errorMessage}`,
         variant: "destructive",
       });
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -92,11 +104,22 @@ export default function PwnedPasswordChecker() {
 
           {result && (
             <div className="mt-4">
-              {result.isPwned ? (
+              {result.error ? (
+                <div className="flex items-center gap-2 text-amber-500">
+                  <AlertCircle className="h-5 w-5" />
+                  <p>
+                    Error checking password: {result.error}
+                    <br />
+                    <span className="text-sm text-muted-foreground">
+                      Please try again later or check your internet connection.
+                    </span>
+                  </p>
+                </div>
+              ) : result.isPwned ? (
                 <div className="flex items-center gap-2 text-red-500">
                   <AlertTriangle className="h-5 w-5" />
                   <p>
-                    This password has been found in {result.count} data breaches.
+                    This password has been found in {result.count?.toLocaleString()} data breaches.
                     <br />
                     <span className="text-sm text-muted-foreground">
                       It is strongly recommended to change this password immediately.

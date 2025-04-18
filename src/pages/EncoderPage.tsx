@@ -4,7 +4,7 @@ import { Info, FileCode, Lock, RefreshCcw, Copy, KeyRound } from "lucide-react";
 
 const EncoderPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-accent/20">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto max-w-6xl">
         
         

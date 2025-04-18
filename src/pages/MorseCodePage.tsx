@@ -4,10 +4,8 @@ import { Radio, Info, Volume2, Clock, Keyboard } from "lucide-react";
 
 const MorseCodePage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-accent/20">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto max-w-6xl">
-        
-        
         <main className="p-4">
           <div className="mb-8 text-center">
             <h1 className="text-4xl font-bold mb-2">

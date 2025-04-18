@@ -3,7 +3,7 @@ import { Info, Shield, AlertTriangle, Lock, Database } from "lucide-react";
 
 export default function PwnedPasswordCheckerPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-accent/20">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto max-w-6xl">
         <main className="p-4">
           <div className="mb-8 text-center">

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,7 +17,8 @@ import {
   morseToText, 
   generateMorseAudio, 
   playMorseAudio,
-  morseCodeMap 
+  morseCodeMap,
+  initAudioContext
 } from "@/lib/morseCode";
 
 const MorseCode = () => {
@@ -28,6 +29,24 @@ const MorseCode = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const audioSourceRef = useRef<AudioBufferSourceNode | null>(null);
+
+  // Initialize audio context on component mount
+  useEffect(() => {
+    // Initialize audio context on first user interaction
+    const initAudio = () => {
+      initAudioContext();
+      document.removeEventListener('click', initAudio);
+      document.removeEventListener('keydown', initAudio);
+    };
+    
+    document.addEventListener('click', initAudio);
+    document.addEventListener('keydown', initAudio);
+    
+    return () => {
+      document.removeEventListener('click', initAudio);
+      document.removeEventListener('keydown', initAudio);
+    };
+  }, []);
 
   const handleConvert = () => {
     try {
@@ -64,8 +83,33 @@ const MorseCode = () => {
     }
 
     try {
-      const morseText = mode === "encode" ? textToMorse(input) : input;
-      const audioBuffer = await generateMorseAudio(morseText);
+      // Ensure audio context is initialized and resumed
+      const ctx = initAudioContext();
+      if (ctx.state === 'suspended') {
+        await ctx.resume();
+      }
+
+      // Get the Morse code to play
+      let morseText: string;
+      if (mode === "encode") {
+        // In encode mode, convert the input text to Morse code
+        morseText = textToMorse(input);
+      } else {
+        // In decode mode, use the input directly as Morse code
+        // Clean up the input to ensure it's valid Morse code
+        morseText = input.trim().replace(/[^.\- ]/g, '');
+        if (!morseText) {
+          throw new Error("No valid Morse code to play");
+        }
+      }
+
+      // Generate and play the audio
+      const audioBuffer = await generateMorseAudio(morseText, {
+        dotDuration: 0.1,
+        frequency: 600,
+        volume: 0.5
+      });
+      
       const source = playMorseAudio(audioBuffer);
       audioSourceRef.current = source;
       setIsPlaying(true);
@@ -75,11 +119,13 @@ const MorseCode = () => {
         audioSourceRef.current = null;
       };
     } catch (error) {
+      console.error("Audio playback error:", error);
       toast({
         title: "Error",
-        description: "Failed to play Morse code audio",
+        description: error instanceof Error ? error.message : "Failed to play Morse code audio",
         variant: "destructive",
       });
+      setIsPlaying(false);
     }
   };
 

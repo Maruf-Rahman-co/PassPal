@@ -51,9 +51,10 @@ export function initAudioContext() {
 export async function generateMorseAudio(morse: string, options = {
   dotDuration: 0.1,
   frequency: 600,
+  volume: 0.5,
 }): Promise<AudioBuffer> {
   const ctx = initAudioContext();
-  const { dotDuration, frequency } = options;
+  const { dotDuration, frequency, volume } = options;
   const dashDuration = dotDuration * 3;
   const symbolGap = dotDuration;
   const letterGap = dotDuration * 3;
@@ -71,8 +72,12 @@ export async function generateMorseAudio(morse: string, options = {
 
   // Create audio buffer
   const sampleRate = ctx.sampleRate;
-  const buffer = ctx.createBuffer(1, sampleRate * totalDuration, sampleRate);
+  const buffer = ctx.createBuffer(1, Math.ceil(sampleRate * totalDuration), sampleRate);
   const channel = buffer.getChannelData(0);
+
+  // Envelope parameters
+  const attackTime = 0.005; // 5ms attack
+  const releaseTime = 0.01; // 10ms release
 
   let currentTime = 0;
   for (const char of morse) {
@@ -81,12 +86,27 @@ export async function generateMorseAudio(morse: string, options = {
                     wordGap;
 
     if (char === '.' || char === '-') {
-      // Generate sine wave
-      const samples = duration * sampleRate;
+      // Generate sine wave with envelope
+      const samples = Math.floor(duration * sampleRate);
+      const attackSamples = Math.floor(attackTime * sampleRate);
+      const releaseSamples = Math.floor(releaseTime * sampleRate);
+      
       for (let i = 0; i < samples; i++) {
         const sampleTime = i / sampleRate;
-        channel[currentTime * sampleRate + i] = 
-          Math.sin(2 * Math.PI * frequency * sampleTime);
+        const position = Math.floor(currentTime * sampleRate) + i;
+        
+        if (position >= channel.length) continue; // Safety check
+        
+        // Calculate envelope
+        let envelope = 1.0;
+        if (i < attackSamples) {
+          envelope = i / attackSamples;
+        } else if (i > samples - releaseSamples) {
+          envelope = (samples - i) / releaseSamples;
+        }
+        
+        // Generate sine wave with envelope and volume control
+        channel[position] = Math.sin(2 * Math.PI * frequency * sampleTime) * envelope * volume;
       }
       currentTime += duration + symbolGap;
     } else {
@@ -100,6 +120,12 @@ export async function generateMorseAudio(morse: string, options = {
 // Play Morse code audio
 export function playMorseAudio(audioBuffer: AudioBuffer) {
   const ctx = initAudioContext();
+  
+  // Resume audio context if it's suspended (required by some browsers)
+  if (ctx.state === 'suspended') {
+    ctx.resume();
+  }
+  
   const source = ctx.createBufferSource();
   source.buffer = audioBuffer;
   source.connect(ctx.destination);

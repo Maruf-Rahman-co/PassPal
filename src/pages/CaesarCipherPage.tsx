@@ -4,7 +4,7 @@ import { Info, History, Lock, Key, Search, Brain } from "lucide-react";
 
 const CaesarCipherPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-accent/20">
+    <div className="min-h-screen  from-background to-accent/20">
       <div className="container mx-auto max-w-6xl">
         
         

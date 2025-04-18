@@ -8,7 +8,7 @@ const PasswordTesterPage = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-accent/20">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto max-w-6xl">
         
         

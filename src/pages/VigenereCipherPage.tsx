@@ -4,7 +4,7 @@ import { Info, History, Lock, Key, Search, Brain } from "lucide-react";
 
 export const VigenereCipherPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-accent/20">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto max-w-6xl">
         
         

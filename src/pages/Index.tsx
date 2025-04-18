@@ -39,13 +39,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-accent/20">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto max-w-6xl">
         <Header />
         
         <main className="p-4">
           <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold mb-2">
+            <h1 className="text-4xl font-bold mb-2 text-foreground">
               Password Party <span className="text-passpal-purple">🔐</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -58,7 +58,7 @@ const Index = () => {
             <div className="md:col-span-4 space-y-6">
               <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <h2 className="text-lg font-semibold mb-3">Password Generator</h2>
+                  <h2 className="text-lg font-semibold mb-3 text-foreground">Password Generator</h2>
                   <PasswordGenerator 
                     password={password} 
                     setPassword={setPassword}
@@ -67,7 +67,7 @@ const Index = () => {
                 </div>
                 
                 <div>
-                  <h2 className="text-lg font-semibold mb-3">Passphrase Generator</h2>
+                  <h2 className="text-lg font-semibold mb-3 text-foreground">Passphrase Generator</h2>
                   <PassphraseGenerator 
                     onSavePassphrase={handleSavePassphrase}
                   />
@@ -88,7 +88,7 @@ const Index = () => {
             
             {/* Right column - Validator */}
             <div className="md:col-span-3 space-y-6">
-              <h2 className="text-lg font-semibold mb-3">Password Validator</h2>
+              <h2 className="text-lg font-semibold mb-3 text-foreground">Password Validator</h2>
               <PasswordValidator 
                 password={password} 
                 onLevelChange={setCurrentLevel}

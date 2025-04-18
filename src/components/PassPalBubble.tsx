@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 import { getPassPalTip, getPasswordPersona } from "@/utils/passwordUtils";
@@ -52,13 +51,13 @@ const PassPalBubble = ({ password, level, strength }: PassPalBubbleProps) => {
   return (
     <div className="glass p-4 rounded-xl animate-scale-in dark:glass-dark">
       <div className="flex items-start gap-3">
-        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl bg-passpal-purple text-white animate-bounce-subtle`}>
+        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl bg-passpal-purple text-white dark:text-black animate-bounce-subtle`}>
           {getMoodEmoji()}
         </div>
         
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-bold text-lg">PassPal</h3>
+            <h3 className="font-bold text-lg text-foreground">PassPal</h3>
             <span className="text-xs bg-passpal-yellow/50 dark:bg-amber-700/50 px-2 py-0.5 rounded-full text-amber-800 dark:text-amber-200">
               AI Assistant
             </span>
@@ -72,8 +71,8 @@ const PassPalBubble = ({ password, level, strength }: PassPalBubbleProps) => {
           </div>
           
           {password && (
-            <div className="mt-2 bg-black/5 dark:bg-white/5 p-2 rounded-lg text-sm">
-              <span className="font-semibold">Your Password Persona:</span> {persona}
+            <div className="mt-2 bg-muted p-2 rounded-lg text-sm">
+              <span className="font-semibold text-foreground">Your Password Persona:</span> {persona}
             </div>
           )}
         </div>
