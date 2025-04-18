@@ -23,12 +23,15 @@ import AboutPage from "@/pages/AboutPage";
 
 const queryClient = new QueryClient();
 
+// Get the base URL from the environment or use an empty string
+const basename = import.meta.env.BASE_URL || '';
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <div className="min-h-screen bg-background">
           <Header />
           <main className="container mx-auto px-4 py-8">
