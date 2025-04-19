@@ -40,10 +40,10 @@ export default function PasswordHistory({ savedPasswords, onDelete }: PasswordHi
   const displayedPasswords = isExpanded ? savedPasswords : savedPasswords.slice(0, 3);
 
   return (
-    <Card className="p-4 sm:p-6 animate-slide-up">
-      <div className="space-y-4">
+    <Card className="p-3 sm:p-4 animate-slide-up">
+      <div className="space-y-3">
         {savedPasswords.length === 0 ? (
-          <div className="text-center py-8">
+          <div className="text-center py-6">
             <p className="text-sm text-muted-foreground">
               No passwords in history yet
             </p>
@@ -61,41 +61,54 @@ export default function PasswordHistory({ savedPasswords, onDelete }: PasswordHi
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2, delay: index * 0.1 }}
-                  className="group relative"
+                  className="group"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-muted rounded-lg hover:bg-muted/80 transition-colors">
-                    <div className="flex items-start gap-3 min-w-0 mb-2 sm:mb-0">
-                      {item.type === 'passphrase' ? (
-                        <FileText className="h-4 w-4 text-muted-foreground mt-1" />
-                      ) : (
-                        <Key className="h-4 w-4 text-muted-foreground mt-1" />
-                      )}
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-mono truncate">{item.value}</p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {formatDistanceToNow(item.timestamp, { addSuffix: true })}
-                        </p>
+                  <div className="bg-muted rounded-lg hover:bg-muted/80 transition-colors">
+                    <div className="p-3">
+                      {/* Top row with icon and actions */}
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          <div className="p-1.5 rounded-md bg-background/50 shrink-0">
+                            {item.type === 'passphrase' ? (
+                              <FileText className="h-4 w-4 text-muted-foreground" />
+                            ) : (
+                              <Key className="h-4 w-4 text-muted-foreground" />
+                            )}
+                          </div>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {formatDistanceToNow(item.timestamp, { addSuffix: true })}
+                          </p>
+                        </div>
+                        <div className="flex gap-1 shrink-0">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleCopy(item.value)}
+                            className="h-7 w-7 p-0"
+                          >
+                            <Copy className="h-4 w-4" />
+                            <span className="sr-only">Copy password</span>
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDelete(item.value)}
+                            className="h-7 w-7 p-0 text-destructive hover:text-destructive"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                            <span className="sr-only">Delete password</span>
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleCopy(item.value)}
-                        className="h-8 hover:bg-background"
-                      >
-                        <Copy className="h-4 w-4" />
-                        <span className="sr-only">Copy password</span>
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleDelete(item.value)}
-                        className="h-8 hover:bg-background text-destructive hover:text-destructive"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                        <span className="sr-only">Delete password</span>
-                      </Button>
+
+                      {/* Password content */}
+                      <div className="w-full bg-background/50 rounded-md">
+                        <div className="max-w-full overflow-hidden">
+                          <div className="p-2 font-mono text-xs sm:text-sm break-all">
+                            {item.value}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -107,7 +120,7 @@ export default function PasswordHistory({ savedPasswords, onDelete }: PasswordHi
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="w-full mt-2 text-muted-foreground hover:text-foreground"
+                className="w-full text-muted-foreground hover:text-foreground"
               >
                 {isExpanded ? (
                   <>

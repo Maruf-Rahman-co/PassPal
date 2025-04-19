@@ -131,7 +131,7 @@ const PasswordGenerator = ({ password, setPassword, onSavePassword }: PasswordGe
             <Slider 
               id="length"
               min={8} 
-              max={64} 
+              max={20} 
               step={1} 
               value={[length]} 
               onValueChange={(value) => setLength(value[0])}

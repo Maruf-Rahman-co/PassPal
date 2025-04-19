@@ -1,4 +1,3 @@
-
 // Password utility functions
 
 // Generate a random password based on configuration
@@ -10,6 +9,9 @@ export function generatePassword(
   includeSymbols: boolean,
   includeEmojis: boolean
 ): string {
+  // Enforce maximum length of 20 characters
+  const maxLength = Math.min(length, 20);
+  
   // Character sets
   const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
@@ -32,7 +34,7 @@ export function generatePassword(
   const charPoolLength = charPool.length;
 
   // Generate the password
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < maxLength; i++) {
     const randomIndex = Math.floor(Math.random() * charPoolLength);
     password += charPool[randomIndex];
   }

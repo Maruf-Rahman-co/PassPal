@@ -44,32 +44,38 @@ export default function PasswordGeneratorPage() {
             />
             
             {password && (
-              <Card className="p-3 sm:p-4 animate-slide-up overflow-hidden">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-3">
-                  <div className="flex items-center gap-2">
-                    <Shuffle className="w-4 sm:w-5 h-4 sm:h-5 text-muted-foreground" />
-                    <span className="font-medium text-sm sm:text-base">Generated Password</span>
+              <Card className="p-3 sm:p-4 animate-slide-up">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <Shuffle className="w-4 sm:w-5 h-4 sm:h-5 text-muted-foreground shrink-0" />
+                      <span className="font-medium text-sm sm:text-base">Generated Password</span>
+                    </div>
+                    <Button
+                      onClick={() => handleSavePassword(password)}
+                      variant="outline"
+                      size="sm"
+                      className="shrink-0 flex items-center gap-2 bg-passpal-purple text-white hover:bg-passpal-purple/90"
+                    >
+                      <Save className="w-4 h-4" />
+                      <span className="text-sm">Save</span>
+                    </Button>
                   </div>
-                  <Button
-                    onClick={() => handleSavePassword(password)}
-                    variant="outline"
-                    size="sm"
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 bg-passpal-purple text-white hover:bg-passpal-purple/90"
-                  >
-                    <Save className="w-4 h-4" />
-                    <span className="text-sm">Save to History</span>
-                  </Button>
-                </div>
-                
-                <div className="p-2 sm:p-3 bg-muted rounded-lg overflow-x-auto">
-                  <code className="text-xs sm:text-sm font-mono break-all whitespace-pre-wrap">{password}</code>
+                  
+                  <div className="w-full bg-muted rounded-lg p-2 sm:p-3">
+                    <div className="max-w-full overflow-hidden">
+                      <div className="break-all font-mono text-xs sm:text-sm">
+                        {password}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </Card>
             )}
             
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
-                <History className="w-4 sm:w-5 h-4 sm:h-5 text-passpal-purple" />
+                <History className="w-4 sm:w-5 h-4 sm:h-5 text-passpal-purple shrink-0" />
                 <h2 className="text-base sm:text-lg font-semibold">Password History</h2>
               </div>
               <PasswordHistory
