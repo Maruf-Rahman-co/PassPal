@@ -3,9 +3,10 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Copy, Zap, Save } from "lucide-react";
+import { Copy, Zap, Save, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { generatePassword, generateMemorablePassword } from "@/utils/passwordUtils";
+import { Card } from "@/components/ui/card";
 
 interface PasswordGeneratorProps {
   password: string;
@@ -73,69 +74,59 @@ const PasswordGenerator = ({ password, setPassword, onSavePassword }: PasswordGe
   };
 
   return (
-    <div className="glass p-6 rounded-xl mb-6 animate-slide-up dark:glass-dark">
-      <div className="flex flex-col gap-2 mb-4">
-        <h2 className="text-xl font-bold flex items-center gap-2 text-foreground">
-          <Zap className="text-passpal-purple dark:text-passpal-purple" size={20} />
-          Password Generator
-        </h2>
-        
-        <div className="flex flex-col gap-2">
-          <div className="relative w-full">
-            <input
-              type="text"
-              value={password}
-              className="w-full p-3 rounded-lg bg-background border border-border font-mono text-sm sm:text-base break-all text-foreground"
-              readOnly
-            />
-            <div className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 gap-2">
-              <Button 
-                onClick={handleCopyPassword}
-                variant="outline" 
-                size="sm"
-                className="hover-bounce bg-passpal-purple text-white dark:text-black hover:bg-passpal-purple/80"
-              >
-                <Copy size={16} className="mr-1" /> Copy
-              </Button>
-              <Button 
-                onClick={handleSavePassword}
-                variant="outline" 
-                size="sm"
-                className="hover-bounce bg-passpal-dark-purple text-white dark:text-black hover:bg-passpal-dark-purple/80"
-                disabled={!password || !onSavePassword}
-              >
-                <Save size={16} className="mr-1" /> Save
-              </Button>
-            </div>
-          </div>
-          <div className="flex sm:hidden gap-2">
-            <Button 
+    <Card className="p-3 sm:p-4 md:p-6 animate-slide-up">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-4 sm:mb-6">
+        <Sparkles className="w-4 sm:w-5 h-4 sm:h-5 text-passpal-purple" />
+        <h2 className="text-base sm:text-lg md:text-xl font-semibold">Password Generator</h2>
+      </div>
+
+      {/* Password Display */}
+      <div className="mb-4 sm:mb-6">
+        <div className="relative flex flex-col gap-2 sm:block">
+          <input
+            type="text"
+            value={password}
+            className="w-full min-h-[48px] px-3 py-2 sm:py-3 rounded-lg bg-background border border-border font-mono text-sm break-all text-foreground sm:pr-[6.5rem]"
+            readOnly
+          />
+          <div className="flex sm:absolute sm:right-2 sm:top-1/2 sm:-translate-y-1/2 gap-2 justify-end">
+            <Button
               onClick={handleCopyPassword}
-              variant="outline" 
+              variant="ghost"
               size="sm"
-              className="flex-1 hover-bounce bg-passpal-purple text-white dark:text-black hover:bg-passpal-purple/80"
+              className="flex-1 sm:flex-initial h-8 hover:bg-background/50 border border-border"
             >
-              <Copy size={16} className="mr-1" /> Copy
+              <Copy className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Copy</span>
             </Button>
-            <Button 
+            <Button
               onClick={handleSavePassword}
-              variant="outline" 
+              variant="ghost"
               size="sm"
-              className="flex-1 hover-bounce bg-passpal-dark-purple text-white dark:text-black hover:bg-passpal-dark-purple/80"
+              className="flex-1 sm:flex-initial h-8 hover:bg-background/50 border border-border"
               disabled={!password || !onSavePassword}
             >
-              <Save size={16} className="mr-1" /> Save
+              <Save className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Save</span>
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-4">
+      {/* Settings Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        {/* Left Column */}
+        <div className="space-y-4 sm:space-y-6">
+          {/* Length Slider */}
           <div className="space-y-2">
-            <div className="flex justify-between items-center">
-              <Label htmlFor="length" className="text-foreground">Length: {length} characters</Label>
-              {isMemorable && <span className="text-xs text-muted-foreground">(Disabled for memorable mode)</span>}
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+              <Label htmlFor="length" className="text-sm font-medium">Length: {length} characters</Label>
+              {isMemorable && (
+                <span className="text-xs text-muted-foreground">
+                  (Disabled for memorable mode)
+                </span>
+              )}
             </div>
             <Slider 
               id="length"
@@ -149,9 +140,10 @@ const PasswordGenerator = ({ password, setPassword, onSavePassword }: PasswordGe
             />
           </div>
 
-          <div className="space-y-3">
+          {/* Character Types */}
+          <div className="space-y-2 sm:space-y-3">
             <div className="flex items-center justify-between">
-              <Label htmlFor="memorable" className="font-medium text-foreground">Make it Memorable</Label>
+              <Label htmlFor="memorable" className="text-sm font-medium">Make it Memorable</Label>
               <Switch 
                 id="memorable" 
                 checked={isMemorable} 
@@ -160,7 +152,7 @@ const PasswordGenerator = ({ password, setPassword, onSavePassword }: PasswordGe
             </div>
 
             <div className="flex items-center justify-between">
-              <Label htmlFor="uppercase" className="font-medium text-foreground">Uppercase Letters</Label>
+              <Label htmlFor="uppercase" className="text-sm font-medium">Uppercase Letters</Label>
               <Switch 
                 id="uppercase" 
                 checked={includeUppercase} 
@@ -169,7 +161,7 @@ const PasswordGenerator = ({ password, setPassword, onSavePassword }: PasswordGe
             </div>
 
             <div className="flex items-center justify-between">
-              <Label htmlFor="lowercase" className="font-medium text-foreground">Lowercase Letters</Label>
+              <Label htmlFor="lowercase" className="text-sm font-medium">Lowercase Letters</Label>
               <Switch 
                 id="lowercase" 
                 checked={includeLowercase} 
@@ -180,46 +172,49 @@ const PasswordGenerator = ({ password, setPassword, onSavePassword }: PasswordGe
           </div>
         </div>
 
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="numbers" className="font-medium text-foreground">Numbers</Label>
-            <Switch 
-              id="numbers" 
-              checked={includeNumbers} 
-              onCheckedChange={setIncludeNumbers}
-            />
+        {/* Right Column */}
+        <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-2 sm:space-y-3">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="numbers" className="text-sm font-medium">Numbers</Label>
+              <Switch 
+                id="numbers" 
+                checked={includeNumbers} 
+                onCheckedChange={setIncludeNumbers}
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <Label htmlFor="symbols" className="text-sm font-medium">Symbols</Label>
+              <Switch 
+                id="symbols" 
+                checked={includeSymbols} 
+                onCheckedChange={setIncludeSymbols}
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <Label htmlFor="emojis" className="text-sm font-medium">Emojis</Label>
+              <Switch 
+                id="emojis" 
+                checked={includeEmojis} 
+                onCheckedChange={setIncludeEmojis}
+                disabled={isMemorable}
+              />
+            </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <Label htmlFor="symbols" className="font-medium text-foreground">Symbols</Label>
-            <Switch 
-              id="symbols" 
-              checked={includeSymbols} 
-              onCheckedChange={setIncludeSymbols}
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Label htmlFor="emojis" className="font-medium text-foreground">Emojis</Label>
-            <Switch 
-              id="emojis" 
-              checked={includeEmojis} 
-              onCheckedChange={setIncludeEmojis}
-              disabled={isMemorable}
-            />
-          </div>
-
-          <div className="mt-4">
-            <Button 
-              onClick={handleGeneratePassword} 
-              className="w-full hover-bounce bg-passpal-purple text-white dark:text-black hover:bg-passpal-purple/80"
-            >
-              <Zap size={16} className="mr-1" /> Generate New Password
-            </Button>
-          </div>
+          {/* Generate Button */}
+          <Button 
+            onClick={handleGeneratePassword} 
+            className="w-full h-10 bg-passpal-purple hover:bg-passpal-purple/90 text-white"
+          >
+            <Zap className="w-4 h-4 mr-2" />
+            Generate New Password
+          </Button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 

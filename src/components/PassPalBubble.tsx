@@ -49,30 +49,31 @@ const PassPalBubble = ({ password, level, strength }: PassPalBubbleProps) => {
   };
   
   return (
-    <div className="glass p-4 rounded-xl animate-scale-in dark:glass-dark">
-      <div className="flex items-start gap-3">
-        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl bg-passpal-purple text-white dark:text-black animate-bounce-subtle`}>
+    <div className="glass p-2 sm:p-3 rounded-lg sm:rounded-xl animate-scale-in dark:glass-dark w-full sm:w-auto">
+      <div className="flex items-start gap-2">
+        <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-lg sm:text-xl bg-passpal-purple text-white dark:text-black animate-bounce-subtle shrink-0`}>
           {getMoodEmoji()}
         </div>
         
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <h3 className="font-bold text-lg text-foreground">PassPal</h3>
-            <span className="text-xs bg-passpal-yellow/50 dark:bg-amber-700/50 px-2 py-0.5 rounded-full text-amber-800 dark:text-amber-200">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5">
+            <h3 className="font-bold text-sm sm:text-base text-foreground">PassPal</h3>
+            <span className="text-[10px] bg-passpal-yellow/50 dark:bg-amber-700/50 px-1.5 py-0.5 rounded-full text-amber-800 dark:text-amber-200 whitespace-nowrap">
               AI Assistant
             </span>
           </div>
           
-          <div className="mt-1 min-h-[60px]">
-            <p className="text-foreground">
+          <div className="mt-1 min-h-[36px] sm:min-h-[48px]">
+            <p className="text-xs sm:text-sm text-foreground break-words">
               {displayedTip}
               {isTyping && <span className="animate-pulse">|</span>}
             </p>
           </div>
           
           {password && (
-            <div className="mt-2 bg-muted p-2 rounded-lg text-sm">
-              <span className="font-semibold text-foreground">Your Password Persona:</span> {persona}
+            <div className="mt-1.5 sm:mt-2 bg-muted p-1.5 sm:p-2 rounded-lg text-xs">
+              <span className="font-semibold text-foreground">Your Password Persona:</span>{" "}
+              <span className="break-words">{persona}</span>
             </div>
           )}
         </div>

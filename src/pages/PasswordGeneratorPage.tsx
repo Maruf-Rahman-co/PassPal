@@ -6,6 +6,8 @@ import { calculatePasswordStrength } from "@/utils/passwordUtils";
 import PasswordHistory from "@/components/PasswordHistory";
 import { usePasswordHistory } from "@/hooks/usePasswordHistory";
 import { Info, Key, Shuffle, Save, History, Settings } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function PasswordGeneratorPage() {
   const [password, setPassword] = useState<string>("");
@@ -26,15 +28,15 @@ export default function PasswordGeneratorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <Key className="w-6 h-6 text-passpal-purple" />
-            <h1 className="text-2xl font-bold">Password Generator</h1>
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <main className="container mx-auto px-2 sm:px-4 py-4 sm:py-6 md:py-8">
+        <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6">
+          <div className="flex items-center gap-2 mb-3 sm:mb-4">
+            <Key className="w-5 sm:w-6 h-5 sm:h-6 text-passpal-purple" />
+            <h1 className="text-xl sm:text-2xl font-bold">Password Generator</h1>
           </div>
           
-          <div className="grid gap-6">
+          <div className="grid gap-4 sm:gap-6">
             <PasswordGeneratorComponent
               password={password}
               setPassword={setPassword}
@@ -42,37 +44,51 @@ export default function PasswordGeneratorPage() {
             />
             
             {password && (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
+              <Card className="p-3 sm:p-4 animate-slide-up overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-3">
                   <div className="flex items-center gap-2">
-                    <Shuffle className="w-5 h-5 text-muted-foreground" />
-                    <span className="font-medium">Generated Password</span>
+                    <Shuffle className="w-4 sm:w-5 h-4 sm:h-5 text-muted-foreground" />
+                    <span className="font-medium text-sm sm:text-base">Generated Password</span>
                   </div>
-                  <button
+                  <Button
                     onClick={() => handleSavePassword(password)}
-                    className="flex items-center gap-2 text-sm text-passpal-purple hover:text-passpal-purple/80"
+                    variant="outline"
+                    size="sm"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 bg-passpal-purple text-white hover:bg-passpal-purple/90"
                   >
                     <Save className="w-4 h-4" />
-                    Save
-                  </button>
+                    <span className="text-sm">Save to History</span>
+                  </Button>
                 </div>
                 
-                <div className="p-4 bg-muted rounded-lg">
-                  <code className="text-lg font-mono break-all">{password}</code>
+                <div className="p-2 sm:p-3 bg-muted rounded-lg overflow-x-auto">
+                  <code className="text-xs sm:text-sm font-mono break-all whitespace-pre-wrap">{password}</code>
                 </div>
-              </div>
+              </Card>
             )}
             
-            <PasswordHistory
-              savedPasswords={savedPasswords}
-              onDelete={deletePassword}
-            />
+            <div className="relative">
+              <div className="flex items-center gap-2 mb-3">
+                <History className="w-4 sm:w-5 h-4 sm:h-5 text-passpal-purple" />
+                <h2 className="text-base sm:text-lg font-semibold">Password History</h2>
+              </div>
+              <PasswordHistory
+                savedPasswords={savedPasswords}
+                onDelete={deletePassword}
+              />
+            </div>
+
+            {/* PassPal Assistant Section */}
+            <div className="w-full">
+              <PassPalBubble 
+                password={password} 
+                level={currentLevel} 
+                strength={strengthScore} 
+              />
+            </div>
           </div>
-          <PassPalBubble password={password} level={currentLevel} strength={strengthScore} />
         </div>
-        
       </main>
-      
     </div>
   );
 } 
